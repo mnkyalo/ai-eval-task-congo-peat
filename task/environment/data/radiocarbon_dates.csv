@@ -1,0 +1,16 @@
+lab_code,depth_cm,material,pretreatment,c14_age_bp,c14_error,c_to_n,d13c_permille
+AWI-4820,0.0,bulk peat,sieved >150 um; AAA,186,30,17.4,-28.1
+AWI-4823,10.0,bulk peat,sieved >150 um; AAA,282,28,15.2,-28.59
+AWI-4826,20.0,bulk peat,sieved >150 um; AAA,622,32,16.6,-28.53
+AWI-4829,30.0,bulk peat,sieved >150 um; AAA,1122,25,15.7,-27.9
+AWI-4832,40.0,bulk peat,AAA only; insufficient material to sieve,826,30,34.6,-29.85
+AWI-4835,50.0,bulk peat,sieved >150 um; AAA,1842,35,14.7,-28.58
+AWI-4838,60.0,bulk peat,sieved >150 um; AAA,2269,28,16.7,-28.51
+AWI-4841,70.0,bulk peat,sieved >150 um; AAA,2451,30,18.1,-28.29
+AWI-4844,80.0,bulk peat,sieved >150 um; AAA,2749,32,16.5,-27.34
+AWI-4847,90.0,bulk peat,sieved >150 um; AAA,2971,35,19.4,-28.03
+AWI-4850,100.0,bulk peat,AAA only; insufficient material to sieve,2852,30,33.3,-29.81
+AWI-4853,110.0,bulk peat,sieved >150 um; AAA,3648,38,18.7,-27.21
+AWI-4856,120.0,bulk peat,AAA only; insufficient material to sieve,3457,32,33.6,-30.0
+AWI-4859,130.0,bulk peat,sieved >150 um; AAA,4150,35,17.7,-28.12
+AWI-4862,140.0,bulk peat,sieved >150 um; AAA,4512,40,18.2,-28.44

@@ -1,0 +1,114 @@
+{
+ "chronology_cal_bp": {
+  "0": 179.4,
+  "10": 308.9,
+  "100": 2935.5,
+  "110": 3943.0,
+  "120": 3694.6,
+  "130": 4675.1,
+  "140": 5157.4,
+  "20": 603.2,
+  "30": 1000.9,
+  "40": 707.5,
+  "50": 1735.3,
+  "60": 2221.4,
+  "70": 2468.1,
+  "80": 2817.8,
+  "90": 3111.3
+ },
+ "excluded_from_age_model": [
+  "40",
+  "100",
+  "120"
+ ],
+ "expansions": {
+  "30": [
+   "Cyperaceae",
+   "Elaeis",
+   "Poaceae",
+   "Raphia"
+  ],
+  "60": [
+   "Cyperaceae",
+   "Poaceae"
+  ]
+ },
+ "influx_grains_per_cm2_per_yr": {
+  "101": {
+   "Alchornea": 492.633,
+   "Cyperaceae": 145.779,
+   "Elaeis": 140.752,
+   "Macaranga": 85.457,
+   "Musanga": 85.457,
+   "Pandanus": 115.618,
+   "Poaceae": 170.913,
+   "Raphia": 3006.065,
+   "Syzygium": 256.37,
+   "Uapaca": 718.842
+  },
+  "27": {
+   "Alchornea": 416.219,
+   "Cyperaceae": 2586.96,
+   "Elaeis": 627.53,
+   "Macaranga": 96.05,
+   "Musanga": 89.647,
+   "Pandanus": 108.857,
+   "Poaceae": 2273.195,
+   "Raphia": 256.135,
+   "Syzygium": 204.908,
+   "Uapaca": 512.269
+  },
+  "35": {
+   "Alchornea": 656.79,
+   "Cyperaceae": 1009.58,
+   "Elaeis": 202.667,
+   "Macaranga": 146.37,
+   "Musanga": 116.346,
+   "Pandanus": 105.086,
+   "Poaceae": 668.049,
+   "Raphia": 153.877,
+   "Syzygium": 296.494,
+   "Uapaca": 758.123
+  },
+  "55": {
+   "Alchornea": 535.885,
+   "Cyperaceae": 727.745,
+   "Elaeis": 261.326,
+   "Macaranga": 155.473,
+   "Musanga": 86.006,
+   "Pandanus": 86.006,
+   "Poaceae": 559.04,
+   "Raphia": 168.704,
+   "Syzygium": 218.323,
+   "Uapaca": 817.059
+  },
+  "65": {
+   "Alchornea": 606.607,
+   "Cyperaceae": 240.859,
+   "Elaeis": 419.272,
+   "Macaranga": 178.414,
+   "Musanga": 107.048,
+   "Pandanus": 133.81,
+   "Poaceae": 258.7,
+   "Raphia": 5566.508,
+   "Syzygium": 410.352,
+   "Uapaca": 1257.817
+  },
+  "69": {
+   "Alchornea": 580.188,
+   "Cyperaceae": 234.683,
+   "Elaeis": 358.543,
+   "Macaranga": 156.455,
+   "Musanga": 136.898,
+   "Pandanus": 104.303,
+   "Poaceae": 221.645,
+   "Raphia": 4087.389,
+   "Syzygium": 312.91,
+   "Uapaca": 906.136
+  }
+ },
+ "zone_boundaries_cm": [
+  "30",
+  "60"
+ ]
+}

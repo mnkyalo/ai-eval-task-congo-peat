@@ -1,0 +1,22 @@
+Core MBK-2 -- Mbeko interfluvial peatland
+Cuvette Centrale, Likouala Department, Republic of the Congo
+
+Latitude          +0.6800  (decimal degrees, WGS84)
+Longitude         +18.3200
+Elevation         318 m a.s.l.
+Cored             2019-03-11
+Core length       540 cm to mineral substrate; this dataset covers 0-140 cm
+Setting           Interfluvial (rain-fed) peatland on the divide between two
+                  blackwater tributaries. No riverine input; the site receives
+                  water and dust only from the atmosphere.
+Rainfall regime   Bimodal, ~1750 mm yr-1, driven by the twice-yearly passage of
+                  the Intertropical Convergence Zone.
+Vegetation today  Mixed swamp forest; Raphia laurentii locally dominant with
+                  Uapaca and Alchornea; herbaceous openings on the margins.
+Sampling          Pollen at 2 cm intervals (odd cm). AMS 14C on bulk peat at
+                  10 cm intervals.
+Pollen counting   Sub-samples were spiked with Lycopodium tablets before
+                  preparation; the preparation record for each level is in
+                  spike_and_volume.csv. Counted to a minimum sum of 1000
+                  grains, terrestrial and herbaceous pollen only. Spores
+                  excluded from the sum.

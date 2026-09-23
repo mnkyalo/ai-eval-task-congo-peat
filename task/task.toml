@@ -1,0 +1,153 @@
+artifacts = ["/app/results.json"]
+
+[task]
+name = "mnkyalo/congo-peat-pollen"
+
+[metadata]
+author_name = "Margaret Kyalo"
+author_email = "mnkyalo22@gmail.com"
+
+difficulty_explanation = """
+Data provenance: the dataset is entirely synthetic. The site and the core are \
+fictional, there is no Mbeko interfluvial peatland and no core MBK-2, \
+and every value the solver sees was produced by a seeded generator rather than \
+measured: the laboratory codes, the radiocarbon determinations and their errors, \
+the C:N and d13C values, the pollen and Lycopodium counts, the counting record, \
+and the per-level preparation record. No real core, laboratory, dataset or \
+publication is reproduced, quoted or paraphrased anywhere in the task. \
+What is real is the science the generator was built to respect: the site description, \
+accumulation rates, pollen sums, spike magnitudes and noise structure were \
+modelled on published central Congo Basin peat records, and the calibration \
+curves shipped with the task are the genuine published IntCal20, SHCal20 \
+and Marine20 datasets. The whole environment rebuilds byte-identically from a fixed \
+seed, which is what lets the answer key be re-derived rather than asserted. \
+Everything below describes that constructed dataset, not a real core.
+
+The task is a routine-looking palaeoecological workflow with six independent \
+places to go wrong, and grading is all-or-nothing across 79 fields, so the \
+chances of slipping compound rather than average out. \
+(1) The synthetic core is sited at 0.68 degrees N, where the ITCZ crosses twice a year, \
+so the peat is modelled as fixing carbon from both hemispheres' air and the dates must be \
+calibrated against a mixture of IntCal20 and SHCal20. Nothing names a curve; \
+the library holds three, one of which (Marine20) is ruled out only by noticing the site is rain-fed. \
+Defaulting to IntCal20 moves a dated level by 70.1 cal yr against a 45 yr tolerance. \
+(2) Three dated samples carry modern rootlet carbon and date far too young. \
+Nothing says so: the solver has to notice that their pre-treatment record shows \
+they could not be sieved, that their C:N sits at 33-35 against a 14.7-19.4 core background, \
+and that each is younger than the level above it. Keeping them puts influx values 225% out. \
+(3) One level was counted twice and the counting record marks the first count superseded,\
+using it puts that level's influx 35-70% out. \
+(4) Tablet count and sub-sample volume vary level by level in the preparation record, \
+assuming the standard two-tablets-in-1 cm3 protocol puts 10 influx values 50% out. \
+(5) Pollen percentages are a closed sum, so a taxon's percentage can rise purely \
+because another collapsed; reading the expansions off percentages instead of \
+influx returns the wrong taxa at both boundaries. \
+(6) The zone boundaries are not given and must be located by constrained clustering rather than by eye.
+
+For a human expert the difficulty is procedural rather than conceptual. \
+The chain runs calibration to contamination screening to age-depth model to \
+accumulation rate to spike-derived concentration to influx to zonation to a \
+threshold rule, each step consuming the last, and a wrong curve or a retained \
+bad date produces ages, rates and influx values that all look entirely plausible. \
+Expert palynologists working on equatorial African records calibrate \
+with a mixed curve and screen bulk-peat dates for rootlet contamination as a \
+matter of course, but both habits are regional, and nothing in the output looks \
+anomalous to someone who skips them.
+"""
+
+solution_explanation = """
+Build a 50:50 IntCal20/SHCal20 atmospheric curve -- means averaged, sigmas \
+combined in quadrature -- because the site straddles the ITCZ; SHCal20's own \
+guidance recommends an equal mixture for equatorial sites, and Marine20 does not \
+apply to a rain-fed peatland. Calibrate all fifteen AMS dates against it and take \
+the median of each calibrated density, giving 179.4 cal BP at 0 cm through to \
+5157.4 cal BP at 140 cm.
+
+Screen the dates before modelling them. Three, at 40, 100 and 120 cm, are \
+condemned by three independent signals that agree: their pre-treatment record \
+says they could not be sieved, their C:N is 33.3 to 34.6 against a 14.7-19.4 background, \
+and each dates younger than the level above it, which peat cannot do. \
+They are still calibrated and reported (707.5, 2935.5 and 3694.6 cal BP) but \
+excluded from the age model. Interpolate linearly between the remaining twelve.
+
+For each counted level recover absolute delivery from the exotic marker rather than from percentages: \
+concentration = (pollen sum / Lycopodium counted) x (tablets x spores per tablet / sub-sample volume), \
+reading tablets and volume per level, and dropping the count the record marks superseded at 55 cm. \
+Then influx = concentration x accumulation rate.
+
+Locate the two zone boundaries by stratigraphically constrained cluster analysis \
+on the percentage data; the two strongest breaks fall at 30 and 60 cm. \
+Applying the stated rule, mean influx over the 10 cm above at least 1.5x the mean over \
+the 10 cm below, gives Cyperaceae, Elaeis, Poaceae and Raphia at 30 cm, and Cyperaceae \
+and Poaceae at 60 cm. Reading the same boundaries off percentages returns the wrong taxa at both.
+"""
+
+verification_explanation = """
+The verifier reads /app/results.json and checks 79 independent fields with no human judgment: \
+15 calibrated ages within +/-45 cal yr absolute, the excluded-date set and the zone-boundary \
+set by exact match, 60 influx values (10 taxa at 6 named depths) within +/-25% relative, \
+and 2 expansion sets by exact set equality, order- and case-insensitive. \
+All 79 must pass. test.sh writes a binary 0 or 1 to /logs/verifier/reward.txt on every code path, \
+including a crashed or missing pytest run, and exits 0 either way.
+
+Ground truth is reproducible rather than asserted: the frozen answer key is \
+regenerated byte-identically by a reference script that reads only the \
+agent-visible files and never the generator's parameters, and the environment \
+itself rebuilds byte-identically from a fixed seed.
+
+Both tolerances are measured. For the ages, the spread across independently reasonable \
+implementations of the stated method, mixing proportions from 35% to 100% southern, \
+calibration grid resolution, sigma-mixing rule, CDF integration, and the third-party iosacal package, \
+is at most 31.1 yr, while calibrating on IntCal20 alone deviates 70.1 yr, 45 yr sits between them \
+with 1.45x headroom over honest scatter and 1.56x over the error it must catch. \
+For influx, accepted variants deviate at most 13.2% while assuming a constant \
+Lycopodium spike puts values 50% out and the superseded count 35.3-70.5%, \
+so 25% carries roughly 2x margin on both sides. The exact-match fields have no \
+legitimate alternative: three independent signals return the same excluded set, \
+and four distance measures return the same boundaries once the clustering input \
+is pinned to percentages, as the instructions state.
+
+Seven wrong-answer scripts were run through this exact verifier. \
+IntCal20 by default fails on chronology only; keeping the contaminated dates fails \
+the excluded set, 20 influx fields and one expansion set; the superseded count fails \
+5 influx fields; the assumed spike protocol fails 10; percentage-based zones fail \
+both expansion sets; eyeballed boundaries fail the boundary field and both \
+expansion sets; and a combined careless run fails chronology and both expansion \
+sets. Each fails on the section its mistake belongs to and passes the rest. \
+The reference solution and an honest run built on a different calibration engine \
+(agreeing to 0.7 yr) both pass all 79.
+"""
+
+category = "Science"
+subcategory = "Earth"
+tags = ['palaeoecology', 'radiocarbon', 'geochronology', 'data-analysis', 'python']
+expert_time_estimate_hours = 6
+relevant_experience = """
+I am a Palaeoecologist and molecular biologist. I did my research at the University of Potsdam, \
+Germany (2012–2018), I was working on low-copy sedimentary ancient DNA, where the discipline of \
+tracking exactly what went into each sub-sample and what could confound it is the same one \
+this task's spike and volume record depends on. 
+
+Before this I did fieldwork in the Congo Basin as part of a research team collecting sediment cores \
+from Congo forest bogs, then sub-sampling and analysing them, with pollen and charcoal as our main proxies. \
+This is the same core-to-proxy workflow this task is built on, in the same peatlands.
+
+I am first author of a 2023 Freshwater Biology paper reconstructing 200 years of community change in \
+a Kenyan soda lake from sediment cores, which meant building the core chronology and reading assemblage. \
+I have since been working as an AI evaluation specialist, building domain-specific benchmarks \
+and adversarial red-team probes for model outputs.
+"""
+
+[verifier]
+timeout_sec = 300.0
+environment_mode = "separate"
+
+[agent]
+timeout_sec = 10800.0
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 2
+memory_mb = 4096
+storage_mb = 10240
+gpus = 0

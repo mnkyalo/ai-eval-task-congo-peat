@@ -1,0 +1,16 @@
+submission                                 reward expect  failed checks
+----------------------------------------------------------------------------------------------------
+oracle (solution/solve.py)                      1      1  all 82 passed
+honest: 35% southern mixture                    1      1  all 82 passed
+honest: 65% southern mixture                    1      1  all 82 passed
+honest: 5-yr calibration grid                   1      1  all 82 passed
+wrong: IntCal20 only                            0      0  chronology 2
+wrong: Marine20                                 0      0  chronology 15, consistency 1
+wrong: keep rootlet-contaminated dates          0      0  excluded 1, influx 20, expansions 1, consistency 1
+wrong: use superseded count at 55 cm            0      0  influx 5, consistency 1
+wrong: assume 2 tablets in 1 cm3                0      0  influx 10, consistency 1
+wrong: expansions from percentages              0      0  expansions 2
+NOT CAUGHT: boundaries from largest jumps       1      1  all 82 passed
+wrong: every shortcut at once                   0      0  chronology 2, excluded 1, influx 35, expansions 2, consistency 1
+----------------------------------------------------------------------------------------------------
+ALL EXPECTATIONS MET

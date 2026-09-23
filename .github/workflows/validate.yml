@@ -1,0 +1,45 @@
+name: validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  grader-discrimination:
+    name: Oracle, honest variants and wrong answers through the real verifier
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install numpy==2.2.6 pytest==9.1.1 pytest-json-ctrf==0.5.2
+      - run: python3 validation/run_validation.py
+
+  docker-oracle:
+    name: Build both images and grade the oracle in the verifier container
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build agent image
+        run: docker build -t cpp-env task/environment
+      - name: Build verifier image
+        run: docker build -t cpp-tests task/tests
+      - name: Run the oracle in the agent image
+        run: |
+          mkdir -p out
+          docker run --rm -v "$PWD/task/solution:/solution:ro" -v "$PWD/out:/app/out" cpp-env \
+            sh -c "bash /solution/solve.sh && cp /app/results.json /app/out/"
+      - name: Grade it in the verifier image (expects reward 1)
+        run: |
+          reward=$(docker run --rm -v "$PWD/out/results.json:/app/results.json:ro" cpp-tests \
+            sh -c "bash /tests/test.sh >/dev/null 2>&1; cat /logs/verifier/reward.txt")
+          echo "reward=$reward"
+          test "$reward" = "1"
+      - name: Grade an empty submission (expects reward 0)
+        run: |
+          echo '{}' > out/empty.json
+          reward=$(docker run --rm -v "$PWD/out/empty.json:/app/results.json:ro" cpp-tests \
+            sh -c "bash /tests/test.sh >/dev/null 2>&1; cat /logs/verifier/reward.txt")
+          echo "reward=$reward"
+          test "$reward" = "0"
