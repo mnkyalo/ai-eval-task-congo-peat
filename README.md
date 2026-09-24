@@ -2,7 +2,7 @@
 
 **A research-grade evaluation task for AI agents: calibrate, screen, model and interpret a tropical peat core, end to end.**
 
-[![validate](https://github.com/mnkyalo/congo-peat-pollen/actions/workflows/validate.yml/badge.svg)](https://github.com/mnkyalo/congo-peat-pollen/actions/workflows/validate.yml)
+[![validate](https://github.com/mnkyalo/ai-eval-task-congo-peat-pollen/actions/workflows/validate.yml/badge.svg)](https://github.com/mnkyalo/ai-eval-task-congo-peat-pollen/actions/workflows/validate.yml)
 ![format: Harbor](https://img.shields.io/badge/format-Harbor-2b6cb0)
 ![runtime: Docker](https://img.shields.io/badge/runtime-Docker-2496ed)
 ![python 3.11+](https://img.shields.io/badge/python-3.11%2B-3776ab)
