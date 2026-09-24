@@ -122,21 +122,7 @@ category = "Science"
 subcategory = "Earth"
 tags = ['palaeoecology', 'radiocarbon', 'geochronology', 'data-analysis', 'python']
 expert_time_estimate_hours = 6
-relevant_experience = """
-I am a Palaeoecologist and molecular biologist. I did my research at the University of Potsdam, \
-Germany (2012–2018), I was working on low-copy sedimentary ancient DNA, where the discipline of \
-tracking exactly what went into each sub-sample and what could confound it is the same one \
-this task's spike and volume record depends on. 
 
-Before this I did fieldwork in the Congo Basin as part of a research team collecting sediment cores \
-from Congo forest bogs, then sub-sampling and analysing them, with pollen and charcoal as our main proxies. \
-This is the same core-to-proxy workflow this task is built on, in the same peatlands.
-
-I am first author of a 2023 Freshwater Biology paper reconstructing 200 years of community change in \
-a Kenyan soda lake from sediment cores, which meant building the core chronology and reading assemblage. \
-I have since been working as an AI evaluation specialist, building domain-specific benchmarks \
-and adversarial red-team probes for model outputs.
-"""
 
 [verifier]
 timeout_sec = 300.0
