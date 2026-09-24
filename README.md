@@ -1,4 +1,4 @@
-# congo-peat-pollen
+# Congo Peat Pollen
 
 **A research-grade evaluation task for AI agents: calibrate, screen, model and interpret a tropical peat core, end to end.**
 
@@ -193,7 +193,7 @@ The lesson I took forward is that difficulty has to come from a mechanism that l
 
 ## About me
 
-**Margaret Kyalo-Omamo** is an aquatic ecologist and palaeoecologist (MSc Hydrobiology, University of Nairobi; PhD research in sedimentary ancient DNA, University of Potsdam). She has worked as an AI evaluation specialist since 2018, designing research-grade benchmark tasks, grading schemes and adversarial red-team probes for model outputs.
+**Margaret Kyalo** is an aquatic ecologist and palaeoecologist (MSc Hydrobiology, University of Nairobi; PhD (Cand.) research in sedimentary ancient DNA, University of Potsdam). She has worked as an AI evaluation specialist since 2018, designing research-grade benchmark tasks, grading schemes and adversarial red-team probes for model outputs.
 
 - First author, [Kyalo-Omamo et al. 2023, *Freshwater Biology* 68:1894–1916](https://doi.org/10.1111/fwb.14093), on sedaDNA of rotifers and 200 years of climate change in two Kenyan crater lakes
 - GitHub: [@mnkyalo](https://github.com/mnkyalo)
